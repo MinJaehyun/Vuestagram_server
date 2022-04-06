@@ -10,7 +10,7 @@ module.exports = {
 		sourceType: 'module',
 	},
 	rules: {
-		'no-console': 'warn',
+		'no-console': 'off',
 		'prettier/prettier': [
 			'warn',
 			{
