@@ -1,0 +1,26 @@
+{
+  "name": "vuestagram_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "lint": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MinJaehyun/Vuestagram_server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MinJaehyun/Vuestagram_server/issues"
+  },
+  "homepage": "https://github.com/MinJaehyun/Vuestagram_server#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2"
+  }
+}
