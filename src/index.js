@@ -24,7 +24,9 @@ const PORT = process.env.PORT
 
 // express setup
 const app = express();
-app.use(cors());
+// test
+app.use(cors({ origin: "https://jovial-goldstine-f5cfd7.netlify.app/", credentials: true }))
+// app.use(cors()); 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev')); // log request
