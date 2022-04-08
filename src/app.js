@@ -20,7 +20,7 @@ mongoose.connect(
 );
 
 // server setup
-let port = 3000;
+let port = 5000;
 
 // express setup
 const app = express();
