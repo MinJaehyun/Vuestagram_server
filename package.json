@@ -5,9 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
+    "start":"node ./src/index.js",
     "lint": "eslint . --fix",
-    "dev": "nodemon src/app.js",
-    "start": "node src/app.js"
+    "dev": "nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
