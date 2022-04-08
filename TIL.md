@@ -3,11 +3,7 @@
 ## ToDoList
 
 ### 2022/04/08
-    1. [] Heroku 로 배포 테스트
-        - Procfile 없으므로 package.json 에 
-          "start": "node src/app.js" 설정
-    2. 
-
+    1. [v] Heroku 로 배포 테스트
 
 ### 2022/04/06
     1. [v] 1_setup: eslint, prettier, .vscode - settings.json
