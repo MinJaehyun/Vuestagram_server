@@ -20,20 +20,20 @@ mongoose.connect(
 );
 
 // server setup
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
 
 // express setup
 const app = express();
-app.use(cors()); 
+app.use(cors());
 // test
 // app.use(cors({ origin: "https://jovial-goldstine-f5cfd7.netlify.app/", credentials: true }))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev')); // log request
 
-// test 
-app.get("/", (req, res) => {
-	res.send({ hello: "world" });
+// test
+app.get('/', (req, res) => {
+	res.send({ hello: 'world' });
 });
 
 // express routers
@@ -41,9 +41,9 @@ app.use('/auth', auth);
 
 // server start
 app.listen(PORT, () => {
-	console
-		.log(`${chalk.white
-		.bgHex('#41b883')
-		.bold(`VUESTAGRAM SERVER IS RUNNING ON ${PORT}`)}`
-		)
+	console.log(
+		`${chalk.white
+			.bgHex('#41b883')
+			.bold(`VUESTAGRAM SERVER IS RUNNING ON ${PORT}`)}`,
+	);
 });
