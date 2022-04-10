@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start":"node ./src/index.js",
+    "start": "node ./src/index.js",
     "lint": "eslint . --fix",
     "dev": "nodemon ./src/index.js"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/MinJaehyun/Vuestagram_server#readme",
   "dependencies": {
+    "@babel/eslint-parser": "^7.17.0",
     "bcrypt": "^5.0.1",
     "chalk": "^5.0.1",
     "cors": "^2.8.5",
