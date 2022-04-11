@@ -5,7 +5,8 @@
 ### 2022/04/10
     1. [v] server 에 있는 id 로 client 에서 회원가입 회원가입 요청 시, 
     server 는 "존재하는 id 입니다" 메시지를 출력한다.
-        - res.status(400).send() 에서 res.status(409).send() 로 변경
+        - [v] res.status(400).send() 에서 res.status(409).send() 로 변경
+        - [v] async await 적용 및 try catch 적용하여 status, send 값 제대로 수신 
     2 [v] swagger api 적용
         - 배포 서버 접속 시, swagger 문서 출력
         - FIXME: 문서화는 됐으나, Test 기능 오류
