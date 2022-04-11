@@ -8,6 +8,7 @@ import dotenv from 'dotenv';
 
 // api
 import auth from './api/auth.js';
+import docs from './utils/api-doc.js';
 
 // dotenv setup
 dotenv.config();
@@ -16,7 +17,7 @@ dotenv.config();
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error'));
 mongoose.connect(
-	`mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@cluster0.geek9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+  `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@cluster0.geek9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
 );
 
 // server setup
@@ -31,19 +32,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev')); // log request
 
-// test
-app.get('/', (req, res) => {
-	res.send({ hello: 'world' });
-});
+// api docs
+app.use('/', docs);
 
 // express routers
 app.use('/auth', auth);
 
 // server start
 app.listen(PORT, () => {
-	console.log(
-		`${chalk.white
-			.bgHex('#41b883')
-			.bold(`VUESTAGRAM SERVER IS RUNNING ON ${PORT}`)}`,
-	);
+  console.log(
+    `${chalk.white
+      .bgHex('#41b883')
+      .bold(`VUESTAGRAM SERVER IS RUNNING ON ${PORT}`)}`,
+  );
 });
