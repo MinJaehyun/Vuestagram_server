@@ -28,18 +28,18 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan('dev')); // log request
+app.use(morgan('dev'));
 
 // Welcome
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.send(`api 문서: https://real-vuestagram-server.herokuapp.com/api/docs`);
 });
 
-// api docs
-app.use('/api', docs);
-
 // express routers
 app.use('/auth', auth);
+
+// api docs
+app.use('/', docs);
 
 // server start
 app.listen(PORT, () => {
