@@ -26,14 +26,17 @@ const PORT = process.env.PORT;
 // express setup
 const app = express();
 app.use(cors());
-// test
-// app.use(cors({ origin: "https://jovial-goldstine-f5cfd7.netlify.app/", credentials: true }))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev')); // log request
 
+// Welcome
+app.get('/', (req, res) => {
+  res.send(`api 문서: https://real-vuestagram-server.herokuapp.com/api/docs`);
+});
+
 // api docs
-app.use('/', docs);
+app.use('/api', docs);
 
 // express routers
 app.use('/auth', auth);

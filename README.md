@@ -1,2 +1,2 @@
-# Vuestagram_server
-    vuestagram_client 을 위한 server api
+### 배포: swagger api 
+    https://dashboard.heroku.com/apps/real-vuestagram-server/api/docs
