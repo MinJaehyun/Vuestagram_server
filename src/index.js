@@ -30,11 +30,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
 
-// Welcome
-app.get('/test', (req, res) => {
-  res.send(`api 문서: https://real-vuestagram-server.herokuapp.com/api/docs`);
-});
-
 // express routers
 app.use('/auth', auth);
 
