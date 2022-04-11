@@ -8,6 +8,6 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.use('/', swaggerUi.serve, swaggerUi.setup(jsonFile));
+router.use('/docs', swaggerUi.serve, swaggerUi.setup(jsonFile));
 
 export default router;
