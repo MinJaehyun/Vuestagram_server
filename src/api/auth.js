@@ -17,30 +17,28 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     // id check
     const user = await UserModel.findOne({ username: username });
-    if (!user) {
+    if (!user)
       res.status(401).send({ err: 'Authentication failed. User not found.' });
-    }
     // pw check
-    bcrypt.compare(password, user.password, (err, result) => {
-      if (err) res.status(500).send('Internal Server Error');
-      if (result) {
-        const token = newToken(user);
-        const loggedUser = {
-          username: user.username,
-          nickname: user.nickname,
-        };
-        res.status(200).json({
-          success: true,
-          user: loggedUser,
-          message: 'Login Success',
-          token: token,
-        });
-      } else {
-        res.status(401).json('Authentication failed. Wrong password.');
-      }
-    });
+    const result = bcrypt.compare(password, user.password);
+    if (result) {
+      const token = newToken(user);
+      const loggedUser = {
+        username: user.username,
+        nickname: user.nickname,
+      };
+      res.status(200).json({
+        success: true,
+        user: loggedUser,
+        message: 'Login Success',
+        token: token,
+      });
+      res.status(200).send(result);
+    } else {
+      res.status(401).json('Authentication failed. Wrong password.');
+    }
   } catch (err) {
-    res.status(500).json('Internal Server Error');
+    if (err) res.status(500).send('Internal Server Error');
     throw err;
   }
 });
