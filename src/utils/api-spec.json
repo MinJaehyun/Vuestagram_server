@@ -9,7 +9,7 @@
   "paths": {
     "/auth/signup": {
       "post": {
-        "tags": ["/auth/signup"],
+        "tags": ["Auth"],
         "description": "회원 가입 API 입니다. 아이디, 암호, 닉네임를 입력 해주세요.",
         "parameters": [
           {
@@ -61,7 +61,7 @@
     },
     "/auth/login": {
       "post": {
-        "tags": ["/auth/login"],
+        "tags": [""],
         "description": "로그인하는 API 입니다. 사용자 아이디와 암호를 입력해야 합니다.",
         "parameters": [
           {
