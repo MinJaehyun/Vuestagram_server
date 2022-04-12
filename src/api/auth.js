@@ -43,24 +43,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/signup', async (req, res) => {
-  const { username, password, nickname } = req.body;
-  if (!username || !password)
-    return res.status(400).send({ err: 'Require nickname and password' });
-
-  try {
-    const user = await UserModel.findOne({ username: username });
-    if (user) {
-      return res.status(409).send({ err: '이미 존재하는 id 입니다.' });
-    }
-    const newUser = new UserModel({ username, password, nickname });
-    newUser.password = await bcrypt.hash(password, 10);
-    await newUser.save();
-    return res.status(201).send(newUser);
-  } catch (err) {
-    console.error(err);
-    return res.status(500).send({ err: err.message });
-  }
-});
-
 export default router;

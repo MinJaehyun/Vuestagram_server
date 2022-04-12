@@ -1,2 +1,2 @@
-### 배포: swagger api 
-    https://dashboard.heroku.com/apps/real-vuestagram-server/api/docs
+### swagger api 
+https://real-vuestagram-server.herokuapp.com/
