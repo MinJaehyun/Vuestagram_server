@@ -17,15 +17,15 @@ router.post('/signup', async (req, res) => {
   try {
     const user = await UserModel.findOne({ username: username });
     if (user) {
-      return res.status(409).send('이미 존재하는 id 입니다.');
+      return res.status(409).send({ err: '이미 존재하는 id 입니다.' });
     }
     const newUser = new UserModel({ username, password, nickname });
     newUser.password = await bcrypt.hash(password, 10);
     await newUser.save();
     return res.status(201).send(newUser);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send({ error: error.message });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send({ err: err.message });
   }
 });
 
