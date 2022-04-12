@@ -17,51 +17,29 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     // id check
     const user = await UserModel.findOne({ username: username });
-    if (!user) {
+    if (!user)
       res.status(401).send({ err: 'Authentication failed. User not found.' });
-    }
     // pw check
-    bcrypt.compare(password, user.password, (err, result) => {
-      if (err) res.status(500).send('Internal Server Error');
-      if (result) {
-        const token = newToken(user);
-        const loggedUser = {
-          username: user.username,
-          nickname: user.nickname,
-        };
-        res.status(200).json({
-          success: true,
-          user: loggedUser,
-          message: 'Login Success',
-          token: token,
-        });
-      } else {
-        res.status(401).json('Authentication failed. Wrong password.');
-      }
-    });
-  } catch (err) {
-    res.status(500).json('Internal Server Error');
-    throw err;
-  }
-});
-
-router.post('/signup', async (req, res) => {
-  const { username, password, nickname } = req.body;
-  if (!username || !password)
-    return res.status(400).send({ err: 'Require nickname and password' });
-
-  try {
-    const user = await UserModel.findOne({ username: username });
-    if (user) {
-      return res.status(409).send({ err: '이미 존재하는 id 입니다.' });
+    const result = bcrypt.compare(password, user.password);
+    if (result) {
+      const token = newToken(user);
+      const loggedUser = {
+        username: user.username,
+        nickname: user.nickname,
+      };
+      res.status(200).json({
+        success: true,
+        user: loggedUser,
+        message: 'Login Success',
+        token: token,
+      });
+      res.status(200).send(result);
+    } else {
+      res.status(401).json('Authentication failed. Wrong password.');
     }
-    const newUser = new UserModel({ username, password, nickname });
-    newUser.password = await bcrypt.hash(password, 10);
-    await newUser.save();
-    return res.status(201).send(newUser);
   } catch (err) {
-    console.error(err);
-    return res.status(500).send({ err: err.message });
+    if (err) res.status(500).send('Internal Server Error');
+    throw err;
   }
 });
 
