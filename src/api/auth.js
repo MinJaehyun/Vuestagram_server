@@ -18,11 +18,15 @@ router.post('/login', async (req, res) => {
     // id check
     const user = await UserModel.findOne({ username: username });
     if (!user)
-      res.status(401).send({ err: 'Authentication failed. User not found.' });
+      return res
+        .status(401)
+        .send({ err: 'Authentication failed. User not found.' });
     // pw check
     const result = await bcrypt.compare(password, user.password);
     if (!result) {
-      res.status(401).json({ err: 'Authentication failed. Wrong password.' });
+      return res
+        .status(401)
+        .json({ err: 'Authentication failed. Wrong password.' });
     } else {
       const token = newToken(user);
       const loggedUser = {
@@ -48,7 +52,6 @@ router.post('/signup', async (req, res) => {
   const { username, password, nickname } = req.body;
   if (!username || !password)
     return res.status(400).send({ err: 'Require nickname and password' });
-
   try {
     const user = await UserModel.findOne({ username: username });
     if (user) {
