@@ -20,8 +20,10 @@ router.post('/login', async (req, res) => {
     if (!user)
       res.status(401).send({ err: 'Authentication failed. User not found.' });
     // pw check
-    const result = bcrypt.compare(password, user.password);
-    if (result) {
+    const result = await bcrypt.compare(password, user.password);
+    if (!result) {
+      res.status(401).json('Authentication failed. Wrong password.');
+    } else {
       const token = newToken(user);
       const loggedUser = {
         username: user.username,
@@ -34,8 +36,6 @@ router.post('/login', async (req, res) => {
         token: token,
       });
       res.status(200).send(result);
-    } else {
-      res.status(401).json('Authentication failed. Wrong password.');
     }
   } catch (err) {
     if (err) res.status(500).send('Internal Server Error');
