@@ -22,7 +22,7 @@ router.post('/login', async (req, res) => {
     // pw check
     const result = await bcrypt.compare(password, user.password);
     if (!result) {
-      res.status(401).json('Authentication failed. Wrong password.');
+      res.status(401).json({ err: 'Authentication failed. Wrong password.' });
     } else {
       const token = newToken(user);
       const loggedUser = {
