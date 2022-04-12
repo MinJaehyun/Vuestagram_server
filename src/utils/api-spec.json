@@ -88,7 +88,7 @@
             }
           },
           "401": {
-            "description": "[에러]비밀번호가 맞지 않아 로그인에 실패하였습니다",
+            "description": "[에러] 아이디 or 비밀번호가 맞지 않아 로그인에 실패 하였습니다",
             "content": {
               "application/json": {},
               "application/xml": {}
