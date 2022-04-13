@@ -13,14 +13,15 @@ const router = Router();
 router.post('/login', async (req, res) => {
   // id & pw를 DB 에서 검증하여 같으면 진행, 다르면 에러 출력
   // 로그인 성공 시, 토큰을 server 로부터 받아 client 에 저장하기
+  const { username, password } = req.body;
   try {
-    const { username, password } = req.body;
     // id check
     const user = await UserModel.findOne({ username: username });
-    if (!user)
+    if (!user) {
       return res
         .status(401)
         .send({ err: 'Authentication failed. User not found.' });
+    }
     // pw check
     const result = await bcrypt.compare(password, user.password);
     if (!result) {
@@ -39,11 +40,9 @@ router.post('/login', async (req, res) => {
         message: 'Login Success',
         token: token,
       });
-      res.status(200).send(result);
     }
   } catch (err) {
-    if (err) res.status(500).send('Internal Server Error');
-    throw err;
+    return res.status(500).send('Internal Server Error');
   }
 });
 
