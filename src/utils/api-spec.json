@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "TIL API 문서",
+    "title": "API 문서",
     "description": "",
     "version": "1.0"
   },
@@ -61,7 +61,7 @@
     },
     "/auth/login": {
       "post": {
-        "tags": [""],
+        "tags": ["Auth"],
         "description": "로그인하는 API 입니다. 사용자 아이디와 암호를 입력해야 합니다.",
         "parameters": [
           {
@@ -103,10 +103,218 @@
           }
         }
       }
+    },
+    "/posts": {
+      "get": {
+        "tags": ["Posts"],
+        "description": "사용자가 등록한 게시물의 목록을 가져오는 API입니다",
+        "responses": {
+          "200": {
+            "description": "[완료]게시물을 받아왔습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "401": {
+            "description": "[에러]인증 토큰이 유효하지 않아 게시물을 받아올 수 없습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "500": {
+            "description": "[에러]서버에 문제가 있어 게시물을 받아오지 못했습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Posts"],
+        "description": "게시물을 한개 생성하는 API입니다",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "제목",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "contents",
+            "in": "formData",
+            "description": "게시물 내용",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "[완료]게시물이 생성되었습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "400": {
+            "description": "[에러]게시물이 이미 존재합니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "500": {
+            "description": "[에러]서버에 문제가 있어 게시물을 생성하지 못했습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/posts/{_id}": {
+      "get": {
+        "tags": ["Posts"],
+        "description": "특정 게시물을 조회하는 API입니다",
+        "operationId": "getPostById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "description": "게시글 고유 아이디",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "[완료]게시물이 조회되었습니다",
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            },
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "401": {
+            "description": "[에러]인증 토큰이 유효하지 않아 게시물을 받아올 수 없습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "500": {
+            "description": "[에러]서버에 문제가 있어 게시물을 생성하지 못했습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Posts"],
+        "description": "특정 게시물을 수정하는 API입니다",
+        "operationId": "updatePost",
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "description": "수정할 게시물의 아이디",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "수정할 게시글의 정보",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "[완료]게시물이 수정되었습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "400": {
+            "description": "[에러]게시물이 이미 존재합니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "404": {
+            "description": "[에러]게시글을 찾을 수 없습니다"
+          },
+          "500": {
+            "description": "[에러]서버에 문제가 있어 게시물을 생성하지 못했습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Posts"],
+        "description": "특정 게시물을 삭제하는 API입니다",
+        "operationId": "deletePost",
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "description": "삭제할 게시물의 아이디",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "[완료]게시물이 삭제되었습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "400": {
+            "description": "[에러]게시물을 삭제할 수 없습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          },
+          "404": {
+            "description": "[에러]게시글을 찾을 수 없습니다"
+          },
+          "500": {
+            "description": "[에러]서버에 문제가 있어 게시물을 삭제하지 못했습니다",
+            "content": {
+              "application/json": {},
+              "application/xml": {}
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
-    "Users": {
+    "Auth": {
       "type": "object",
       "properties": {
         "_id": {
@@ -124,6 +332,20 @@
         "nickname": {
           "type": "string",
           "description": "User's nickname"
+        }
+      }
+    },
+    "Posts": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "contents": {
+          "type": "string"
         }
       }
     }
