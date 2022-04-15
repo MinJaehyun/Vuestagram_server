@@ -7,6 +7,14 @@
   },
   "produces": ["application/json"],
   "paths": {
+    "/vuestagram": {
+      "post": {
+        "tags": ["Vuestagram"],
+        "description": "사진을 필터처리하여 등록할 수 있습니다. 등록한 사진을 이미지 분류하여 자동으로 태그를 등록합니다.",
+        "parameters": [{"description":"해당 기능은 인자를 등록할 수 없습니다."}],
+        "responses": {}
+      }
+    },
     "/auth/signup": {
       "post": {
         "tags": ["Auth"],
