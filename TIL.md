@@ -2,6 +2,16 @@
 
 ## ToDoList
 
+### 2022/04/16
+
+### 2022/04/15
+    1. [v] post create 구현
+        - [v] router, create api, model 구현
+    2. [v] user 인증을 위한 미들웨어 구현
+
+### 2022/04/14
+    1. [v] post crud swagger api 작성 
+
 ### 2022/04/11
     1. [v] auth.js - async await 적용 및 try catch 적용하여 status, send 값 제대로 수신
     2. [v] swagger api 적용
