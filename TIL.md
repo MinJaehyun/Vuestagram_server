@@ -2,7 +2,12 @@
 
 ## ToDoList
 
+### 2022/04/17
+
 ### 2022/04/16
+    1. [v] post get 구현
+        - [v] router, get api 설정
+    2. [v] 각각의 models 에 timestamps 추가
 
 ### 2022/04/15
     1. [v] post create 구현
