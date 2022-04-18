@@ -2,7 +2,13 @@
 
 ## ToDoList
 
-### 2022/04/17
+### 2022/04/19
+    1. [] posts - put
+    2. [] posts - get(:/id)
+
+### 2022/04/18
+    1. [v] fix Duplicated message
+    2. [v] posts - delete api 
 
 ### 2022/04/16
     1. [v] post get 구현
