@@ -19,7 +19,11 @@ router.post('/', async (req, res) => {
     res.status(201).json({ data: doc });
   } catch (error) {
     if (error.code === 11000) {
-      return res.status(400).send({ message: 'Duplicated Data', error });
+      // Duplicated Data
+      return res.status(400).send({
+        message: '동일한 게시글이 존재합니다. 제목을 바꿔주세요.',
+        error,
+      });
     }
     res.status(400).send({ message: 'something wrong', error });
   }
