@@ -47,7 +47,7 @@ router.get('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     // findOneAndDelete, findOneAndRemove
-    const removed = await PostModel.findOneAndDelete({
+    const removed = await PostModel.findOneAndRemove({
       /** NOTE: 아래 없으면 다른 사람의 작성글을 지울 수 있지만, 전체 조회에서 createdBy 걸어서 다른 사람의 id를 알 수는 없는 상태이다 */
       createdBy: req.user._id,
       _id: req.params.id,
@@ -56,7 +56,7 @@ router.delete('/:id', async (req, res) => {
       return res.status(400).json({ message: 'cannot remove the data' });
     }
     // NOTE: (removed), ({removed}), ({...removed})
-    return res.status(200).json(removed);
+    return res.status(200).json({ ...removed });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'sth wrong', error });
