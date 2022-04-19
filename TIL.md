@@ -1,10 +1,11 @@
 # Today's Improvements
 
 ## ToDoList
+    * heroku 자동 배포 에러나서 직접 배포: $ git push heroku main 
 
 ### 2022/04/19
-    1. [] posts - put
-    2. [] posts - get(:/id)
+    1. [v] post - put(:/id)
+    2. [v] post - get(:/id)
 
 ### 2022/04/18
     1. [v] fix Duplicated message
