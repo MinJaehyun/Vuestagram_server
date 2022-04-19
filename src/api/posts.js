@@ -63,4 +63,39 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// 특정 post id 조회
+router.get('/:id', async (req, res) => {
+  try {
+    const doc = await PostModel.findOne({
+      _id: req.params.id,
+      createdBy: req.user._id,
+    });
+    if (!doc) return res.status(400).json({ message: 'The data is not found' });
+    res.status(200).json({ ...doc });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: 'sth wrong', error });
+  }
+});
+
+// 특정 post id 의 내용 변경
+router.put('/:id', async (req, res) => {
+  try {
+    const updateDoc = await PostModel.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        createdBy: req.user._id, // Authenticate
+      },
+      req.body,
+      { new: true },
+    );
+    if (!updateDoc)
+      return res.status(400).json({ message: 'cannot update the data' });
+    res.status(200).json({ ...updateDoc });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: 'sth wrong', error });
+  }
+});
+
 export default router;
