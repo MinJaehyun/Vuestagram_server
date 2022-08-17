@@ -28,7 +28,7 @@
     "express": "^4.17.3",
     "heroku": "^7.60.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.10",
+    "mongoose": "^6.5.2",
     "morgan": "^1.10.0",
     "swagger-jsdoc": "^6.2.0",
     "swagger-ui-express": "^4.3.0"
@@ -37,7 +37,7 @@
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "nodemon": "^2.0.15",
+    "nodemon": "^2.0.19",
     "prettier": "^2.6.2"
   }
 }
