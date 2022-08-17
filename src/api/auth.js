@@ -18,16 +18,22 @@ router.post('/login', async (req, res) => {
     // id check
     const user = await UserModel.findOne({ username: username });
     if (!user) {
-      return res
-        .status(401)
-        .send({ err: 'Authentication failed. User not found.' });
+      return (
+        res
+          .status(401)
+          // Authentication failed. User not found.
+          .send({ err: '잘못된 이메일을 입력하셨습니다.' })
+      );
     }
     // pw check
     const result = await bcrypt.compare(password, user.password);
     if (!result) {
-      return res
-        .status(401)
-        .json({ err: 'Authentication failed. Wrong password.' });
+      return (
+        res
+          .status(401)
+          // Authentication failed. Wrong password.
+          .json({ err: '잘못된 패스워드를 입력하셨습니다.' })
+      );
     } else {
       const token = newToken(user);
       const loggedUser = {
