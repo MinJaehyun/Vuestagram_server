@@ -3,6 +3,13 @@
 ## ToDoList
     * heroku 자동 배포 에러나서 직접 배포: $ git push heroku main 
 
+### 2022/08/18
+    1. [v] 전체 게시글 api 
+
+### 2022/08/17
+    1. [v] $npm audit fix
+    2. [v] id 또는 password 잘못 입력 시, 에러 메시지 유저가 알아보기 쉽게 한글로 변경
+
 ### 2022/04/19
     1. [v] post - put(:/id)
     2. [v] post - get(:/id)
