@@ -5,6 +5,9 @@
 
 ### 2022/08/18
     1. [v] 전체 게시글 api 
+    2. [v] blog user_id 를 객체로 나타내기  
+        - client 에서 설정하면 실행 시간 오래 걸린다
+        - server 에서 populate 설정
 
 ### 2022/08/17
     1. [v] $npm audit fix
