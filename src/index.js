@@ -10,6 +10,7 @@ import dotenv from 'dotenv';
 import auth from './api/auth.js';
 import docs from './utils/api-doc.js';
 import posts from './api/posts.js';
+import findAll from './api/findAll.js';
 
 // utils
 import { authenticateUser } from './utils/auth.js';
@@ -36,6 +37,7 @@ app.use(morgan('dev'));
 
 // express routers
 app.use('/auth', auth);
+app.use('/findAll', findAll);
 app.use('/posts', authenticateUser, posts);
 
 // api docs
